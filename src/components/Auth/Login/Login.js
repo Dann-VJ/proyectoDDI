@@ -10,9 +10,11 @@ import { useAuth } from '../../../hooks/useAuth'
 import Toast from 'react-native-root-toast';
 import { userController } from '../../../api/users';
 
-export default function Login(props) {
+export default function Login(props) { 
   const { cambioAuth } = props
-  const useAuthData = useAuth();
+  const {login} = useAuth();
+
+  // const useAuthData = useAuth();
 
   const formik = useFormik({
     initialValues: {
@@ -28,10 +30,14 @@ export default function Login(props) {
     onSubmit: async (formData) => {
       try {
         const { email, password } = formData;
-        const response = await authApi.login(email, password);
-        console.log("response", response.jwt)
-        const user = userController.getMe();
-        console.log("user", user)     
+        const response = await authApi.login(email,password);
+        login(response.jwt);
+          Toast.show("Bienvenido!!!", {
+            position: Toast.positions.CENTER,
+          });
+          
+        console.log("userController.getMe------------------->",await userController.getMe())
+        
       } catch (error) {
         Toast.show("Error al iniciar sesión", {
           position: Toast.positions.CENTER,
@@ -41,7 +47,7 @@ export default function Login(props) {
 
   });
 
-  
+
 
   return (
     <View>

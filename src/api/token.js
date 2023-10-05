@@ -16,7 +16,7 @@ const removeToken = async () => {
     await AsyncStorage.removeItem(ENV.STORAGE.TOKEN);
 }
 
-export default {
+export const storageController = {
     setToken,
     getToken,
     removeToken 
