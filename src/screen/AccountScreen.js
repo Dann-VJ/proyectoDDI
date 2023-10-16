@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import { Avatar, Button } from 'react-native-paper';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../hooks/useAuth'
 
 export default function AccountScreen() {
   const { logout, user } = useAuth();
@@ -9,16 +9,12 @@ export default function AccountScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={{ fontSize: 20 }}>Cuenta</Text>
         <Avatar.Image size={200} source={require('../assets/person1.jpeg')} />
-      </View>
-      <ScrollView style={styles.MainContainer}>
-        <Text style={ styles.username }>Nombre: {user.username}</Text>
-        <Text style={ styles.email }>Email: {user.email}</Text>
-        <Button
-          mode="contained"
-          onPress={logout}
-        >
+      </View>    
+      <ScrollView contentContainerStyle={styles.MainContainer}>
+        <Text style={styles.username}>Nombre: {user.username}</Text>
+        <Text style={styles.email}>Email: {user.email}</Text>
+        <Button mode="contained" onPress={logout}>
           Cerrar sesión
         </Button>
       </ScrollView>
@@ -32,9 +28,9 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    justifyContent: 'space-between', // espacio entre los elementos,
+    justifyContent: 'center', // espacio entre los elementos,
     alignItems: 'center', // alinea los elementos al centro
-    padding: 10,
+    padding: 20,
 
   },
   MainContainer: {
@@ -56,7 +52,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between', // espacio entre los elementos,
     alignItems: 'center', // alinea los elementos al centro
-    padding: 10,
-
-  }
+    padding: 20,
+  },
 })

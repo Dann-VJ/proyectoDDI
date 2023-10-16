@@ -36,7 +36,7 @@ export default function Login(props) {
             position: Toast.positions.CENTER,
           });
           
-        console.log("userController.getMe------------------->",await userController.getMe())
+        console.log("userController.getMe----->",await userController.getMe())
         
       } catch (error) {
         Toast.show("Error al iniciar sesión", {
@@ -46,8 +46,6 @@ export default function Login(props) {
     }
 
   });
-
-
 
   return (
     <View>

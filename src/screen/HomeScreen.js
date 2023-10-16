@@ -1,19 +1,27 @@
 import React from 'react'
-import  { View, Text } from 'react-native'
-import { useAuth } from '../hooks/useAuth'
+import { View, Text, SafeAreaView, FlatList, ImageBackground } from 'react-native'
 import { Button } from 'react-native-paper';
 import { globalStyles } from '../../styles';
+import Card from '../components/Card/Card';
+import { styles } from './Auth/AuthScreen.styles';
 
-const HomeScreen = () => {
-  const {logout, user} = useAuth();
-  console.log("Mi user: ",user)
+export default function HomeScreen(props) {
+  const { characters } = props;
+  console.log('characters', characters);
 
   return (
-    <View>
-        <Text>HomeScreen</Text>
-        <Button mode='contained' style={globalStyles.form.buttonSubmit} onPress={logout}>Salir</Button>
-    </View>
+    <ImageBackground source={require('../assets/cielo-estrellado.jpg')} style={styles.backgroundImg}>
+      <SafeAreaView style={{ marginHorizontal: 20 }}>
+        <FlatList
+          style={{ marginTop: 30 }}
+          data={characters}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(characters) => String(characters.id)}
+          renderItem={({ item }) => <Card characters={item} />}
+        />
+      </SafeAreaView>
+    </ImageBackground>
   )
 }
 
-export default HomeScreen
+

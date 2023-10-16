@@ -9,7 +9,7 @@ const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: 'tomato',
+    primary: '#5CAD4A',
     secondary: 'yellow',
   },
 };

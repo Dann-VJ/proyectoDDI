@@ -9,7 +9,12 @@ export const styles = StyleSheet.create({
   image:{
     alignSelf: 'center',
     marginBottom: 20,
-    width: 200,
+    width: 270,
     height: 250,
-  }
+  },
+  backgroundImg:{
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+  },
 });
