@@ -3,6 +3,7 @@ import { View, Text } from 'react-native'
 import { IconButton } from 'react-native-paper'
 import { addFavoriteApi, isFavoriteApi, deleteFavoriteApi } from '../../api/favorito';
 import Toast from 'react-native-root-toast'; 
+import HomeScreen from '../../screen/HomeScreen';
 
 export default function Favoritos(props) {
     const { id } = props;
@@ -56,6 +57,7 @@ export default function Favoritos(props) {
     const iconColor = isFavorite ? 'red' : 'white';
     
     return (
+        
         <View>
             <IconButton
                 icon="heart"
@@ -63,6 +65,6 @@ export default function Favoritos(props) {
                 size={50}
                 onPress={isFavorite ? deleteFavorite : addFavoritos}
             />
-        </View>
+        </View> 
     )
 }

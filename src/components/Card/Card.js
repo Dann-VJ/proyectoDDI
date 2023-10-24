@@ -22,6 +22,7 @@ export default function Card(props) {
                     style={globalStyles.card.img}
                     source={{ uri: characters.image }} />
                 <Text style={globalStyles.card.containerText} >{characters.name}</Text> 
+                <Text style={globalStyles.card.containerText} >{characters.id}</Text>
             </View>
         </TouchableOpacity>
     )

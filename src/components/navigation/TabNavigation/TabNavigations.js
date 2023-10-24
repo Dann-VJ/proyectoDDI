@@ -9,6 +9,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome'
 import { styles } from './TabNavigation.styles';
 import AuthScreen from '../../../screen/Auth/AuthScreen';
 import RickandMortyAPI from '../../../api/rm';
+import Favorites from '../../../components/Favoritos/Favoritos';
 
 
 
@@ -28,7 +29,7 @@ const TabNavigations = () => {
 
       <Tab.Screen
         name="Favorites"
-        component={FavoritesScreen}
+        component={FavoritesScreen}  
         options={{ title: 'Favoritos' }} />
 
       <Tab.Screen
