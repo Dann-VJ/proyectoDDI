@@ -16,7 +16,7 @@ export default function HomeScreen(props) {
   }
 
   return (
-    <ImageBackground source={require('../assets/cielo-estrellado.jpg')} style={styles.backgroundImg}>
+    <ImageBackground source={require('../assets/cielo-estrellado.jpg')} style={styles.backgroundImg}> 
       <SafeAreaView style={{ marginHorizontal: 20 }}>
         <FlatList
           style={{ marginTop: 30 }}

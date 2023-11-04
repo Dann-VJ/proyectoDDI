@@ -1,7 +1,8 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, createContext, useCallback } from "react";
 import { storageController } from "../api/token";
 import { userController } from "../api/users";
 import { tokenExpired } from "../utils/tokenExpired";
+import { addAllFavoritosApi, removeStorageFavoriteApi } from "../api/favorito";
 
 export const AuthContext = createContext();
 
@@ -37,6 +38,12 @@ export const AuthProvider = (props) => {
             console.log('Obtenido ', token);
             await storageController.setToken(token);
             const response = await userController.getMe();
+
+            // Obtener los favoritos del usuario
+            if(response.favoritos) {
+                await addAllFavoritosApi(response.favoritos);
+            }
+
             setUser(response);
             setIsLoading(false);
             console.log('user-->', response);
@@ -49,6 +56,7 @@ export const AuthProvider = (props) => {
     const logout = async () => {
         try {
             await storageController.removeToken();
+            await removeStorageFavoriteApi();
             setUser(null);
             setIsLoading(false);
         } catch (error) {
@@ -57,12 +65,15 @@ export const AuthProvider = (props) => {
         }
     }
 
-    const upDateUser = async (key, value) => {
-        setUser({
-            ...user,
-            [key]: value
-        })
-    }
+    // const upDateUser = async (key, value) => {
+    //     setUser({
+    //         ...user,
+    //         [key]: value
+    //     })
+    // }
+    const upDateUser = useCallback((key, value) => {
+        setUser((prevUser) => ({ ...prevUser, [key]: value }));
+    }, []);
 
     const data = {
         user,

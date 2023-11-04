@@ -1,15 +1,12 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from '../../../screen/HomeScreen';
-import SettingsScreen from '../../../screen/SettingsScreen';
 import FavoritesScreen from '../../../screen/FavoritesScreen';
-import AccountScreen from '../../../screen/AccountScreen';
 import { View, Image  } from 'react-native'
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome'
 import { styles } from './TabNavigation.styles';
-import AuthScreen from '../../../screen/Auth/AuthScreen';
 import RickandMortyAPI from '../../../api/rm';
-import Favorites from '../../../components/Favoritos/Favoritos';
+import StackAccount from '../StackNavigation/StackAccount';
+
 
 
 
@@ -22,25 +19,21 @@ const TabNavigations = () => {
         tabBarIcon: (routeStatus) => setIcon(route, routeStatus)
       })}
     >
-      {/* <Tab.Screen 
-        name="Settings" 
-        component={SettingsScreen}
-        options={{title: 'Ajustes'}} /> */}
 
       <Tab.Screen
         name="Favorites"
         component={FavoritesScreen}  
-        options={{ title: 'Favoritos' }} />
+        options={{ title: 'Favoritos', tabBarShowLabel: false }} />
 
       <Tab.Screen
         name="Home"
         component={RickandMortyAPI} 
-        options={{ title: 'Inicio' }} />
+        options={{ title: 'Inicio', tabBarShowLabel: false }} />
 
       <Tab.Screen
         name="Account"
-        component={AccountScreen}
-        options={{ title: 'Cuenta' }}
+        component={StackAccount}
+        options={{ title: 'Cuenta', tabBarLabel: '', tabBarShowLabel: true }}
       />
 
     </Tab.Navigator>
@@ -49,11 +42,10 @@ const TabNavigations = () => {
 
 const setIcon = (route, routeStatus) => {
   let iconName = '';
-  let icon = ''
   let color = '#6E6E6E';
 
   if (routeStatus.focused) {
-    color = '#BE81F7';
+    color = '#5CAD4A';
   }
   if (route.name === 'Home') {
     iconName = require('../../../assets/Rick.png'); 

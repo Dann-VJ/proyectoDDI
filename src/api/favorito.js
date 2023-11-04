@@ -7,12 +7,12 @@ import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 export const getFavoriteApi = async () => {
     try {
         const response = await AsyncStorage.getItem(ENV.STORAGE.FAVORITE);
-        return JSON.parse(response || []);
+        return response ? JSON.parse(response) : [];
     } catch (error) {
         console.log(error);
         return [];
     }
-}; 
+}
 
 // Crear la función que agrega un favorito
 export const addFavoriteApi = async (id) => {
@@ -26,7 +26,7 @@ export const addFavoriteApi = async (id) => {
     } catch (error) {
         console.log(error);
     }
-};
+}
 
 // Crear la función que valida si un personaje es favorito
 export const isFavoriteApi = async (id) => {
@@ -37,7 +37,7 @@ export const isFavoriteApi = async (id) => {
         console.log(error);
         return false;
     }
-};
+}
 
 // Crear la función que elimina un favorito
 export const deleteFavoriteApi = async (id) => {
@@ -51,5 +51,25 @@ export const deleteFavoriteApi = async (id) => {
     } catch (error) {
         console.log(error);
     }
-};
+}
+
+export const removeStorageFavoriteApi = async () => {
+    try {
+        // const favorites = await getFavoriteApi();
+        // elimina los datos en favoritos
+        await AsyncStorage.removeItem(ENV.STORAGE.FAVORITE);
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const addAllFavoritosApi = async (favorites) => {
+    try {
+        await AsyncStorage.setItem(ENV.STORAGE.FAVORITE, JSON.stringify(favorites));
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 
